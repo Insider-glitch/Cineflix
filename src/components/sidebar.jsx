@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen }) => {
         <ul>
           <li className="hover:bg-gray-700">
             <NavLink
-              to="/"
+              to="/Cineflix"
               className={({ isActive }) =>
                 `block px-4 py-2 ${isActive ? "bg-gray-800" : ""}`
               }

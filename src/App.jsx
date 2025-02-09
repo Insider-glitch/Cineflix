@@ -5,7 +5,7 @@ import { SearchProvider } from './context/searchContext';
 const App = () => {
 
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/Cineflix">
       <Routes>
           {AppRoutes.map((route, index) => {
             const { element, path } = route; 
