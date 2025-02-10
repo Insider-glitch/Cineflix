@@ -69,7 +69,7 @@ const AuthModals = ({ closeModal }) => {
             return;
         }
 
-        setSuccess("Registration successful! You can now log in.");
+        setSuccess("Registration successful!");
 
         if (!data.session) {
             setReminder("Please confirm your email before logging in.");
