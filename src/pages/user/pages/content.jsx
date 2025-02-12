@@ -5,9 +5,9 @@ import { useSearch } from "../../../context/searchContext";
 
 const MainContent = () => {
   const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const { searchQuery } = useSearch();
-  
+
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
@@ -35,19 +35,23 @@ const MainContent = () => {
       <main className="p-4">
         <h1 className="text-xl font-bold sm:text-2xl">Trending</h1>
         <div className="mt-4 flex h-full justify-center rounded-md p-4">
-        {loading ? (
+          {loading ? (
             <p className="text-center text-lg">Loading movies...</p>
           ) : (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {movies
-            .filter((item) =>
-              searchQuery.trim() === "" || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
-            )
-            .map((item) => (
-              <MoviesCard key={item.id} movie={item} />
-            ))}
-          </div>
-        )}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {movies
+                .filter(
+                  (item) =>
+                    searchQuery.trim() === "" ||
+                    item.name
+                      .toLowerCase()
+                      .includes(searchQuery.toLowerCase().trim()),
+                )
+                .map((item) => (
+                  <MoviesCard key={item.id} movie={item} />
+                ))}
+            </div>
+          )}
         </div>
       </main>
     </div>

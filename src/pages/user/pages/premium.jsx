@@ -7,7 +7,7 @@ const PremiumContent = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const { searchQuery } = useSearch();
-  
+
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
@@ -29,7 +29,7 @@ const PremiumContent = () => {
 
     fetchMovies();
   }, []);
-  
+
   return (
     <div className="flex-grow transition-all duration-300">
       <main className="p-4">
@@ -38,14 +38,18 @@ const PremiumContent = () => {
           {loading ? (
             <p className="text-center text-lg">Loading movies...</p>
           ) : (
-            <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {movies
-                .filter((item) =>
-                  searchQuery.trim() === "" || item.name.toLowerCase().includes(searchQuery.toLowerCase().trim())
+                .filter(
+                  (item) =>
+                    searchQuery.trim() === "" ||
+                    item.name
+                      .toLowerCase()
+                      .includes(searchQuery.toLowerCase().trim()),
                 )
                 .map((item) => (
                   <MoviesCard key={item.id} movie={item} />
-              ))}
+                ))}
             </div>
           )}
         </div>
