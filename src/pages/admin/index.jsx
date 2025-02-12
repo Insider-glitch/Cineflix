@@ -9,7 +9,7 @@ const AdminRoutes = () => {
   return (
     <AdminLayout>
       <Routes>
-        <Route path="movies" element={<MoviesPage />} />
+        <Route path="/" element={<MoviesPage />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="users" element={<UsersPage />} />
       </Routes>

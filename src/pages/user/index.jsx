@@ -10,7 +10,7 @@ export default function UserRoutes() {
     <SearchProvider>
       <UserLayout>
         <Routes>
-          <Route path="/Cineflix" element={<Movies />} />
+          <Route path="/" element={<Movies />} />
           <Route path="premium" element={<Premium />} />
         </Routes>
       </UserLayout>
