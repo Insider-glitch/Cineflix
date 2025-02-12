@@ -40,7 +40,7 @@ const Header = ({ toggleSidebar }) => {
         ></i>
 
         {/* Logo */}
-        <Link to="/Cineflix">
+        <Link to="/">
           <img className="w-32" src={logo} alt="Logo" />
         </Link>
 

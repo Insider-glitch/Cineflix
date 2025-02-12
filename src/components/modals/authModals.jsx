@@ -39,7 +39,7 @@ const AuthModals = ({ closeModal }) => {
         }
 
         setSuccess("Login successful!");
-        Navigate(userData.role === "admin" ? "/admin" : window.location.reload());
+        Navigate(userData.role === "admin" ? "/admin/dashboard" : window.location.reload());
     } else {
         if (password !== confirmPassword) {
             setError("Passwords do not match!");
@@ -52,7 +52,6 @@ const AuthModals = ({ closeModal }) => {
         }
 
         const { data, error } = await supabase.auth.signUp({ email, password });
-        console.log("Signup Response:", { data, error });
 
         if (error || !data || !data.user) {
             setError("Registration failed. Please try again later.");

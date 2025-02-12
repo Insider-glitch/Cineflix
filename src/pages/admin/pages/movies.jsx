@@ -24,7 +24,6 @@ const MoviesPage = () => {
     try {
       const imageUrl = await uploadImageToStorage(newMovie.image);
       const movieWithImage = { ...newMovie, image: imageUrl };
-      console.log('movieWithImage', movieWithImage);
       const { data, error } = await supabase.from('movies').insert([movieWithImage]);
       if (error) {
         console.error('Error adding movie:', error);
@@ -44,7 +43,6 @@ const MoviesPage = () => {
     const bucketName = "movie-posters";
     const fileName = `/${Date.now()}-${imageFile.name}`; 
   
-    console.log("Uploading file:", fileName);
   
     const { data, error } = await supabase.storage
       .from(bucketName)
@@ -58,15 +56,12 @@ const MoviesPage = () => {
       throw new Error(error.message);
     }
   
-    console.log("File uploaded successfully:", data);
-  
     const { data: urlData } = supabase.storage.from(bucketName).getPublicUrl(fileName);
   
     if (!urlData) {
       throw new Error("Error retrieving file URL.");
     }
-  
-    console.log("Public URL generated:", urlData.publicUrl);
+
     return urlData.publicUrl;
   };  
   

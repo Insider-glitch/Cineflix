@@ -12,11 +12,9 @@ const AdminRoute = ({ children }) => {
     try {
       const { data, error: sessionError } = await supabase.auth.getSession();
       const session = data?.session; 
-  
-      console.log("Full session:", session);
+
   
       if (!session?.user) {
-        console.log("No user found in session.");
         setIsLoading(false);
         return;
       }
@@ -26,7 +24,6 @@ const AdminRoute = ({ children }) => {
         .select("role")
         .eq("id", session.user.id)
         .single();
-      console.log("Supabase Query Result:", userData, error);
   
       if (error) {
         console.error("Error fetching role:", error.message);
