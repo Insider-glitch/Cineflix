@@ -38,7 +38,6 @@ const Header = ({ toggleSidebar }) => {
           className="fa-solid fa-bars cursor-pointer pr-4 text-xl"
           onClick={toggleSidebar}
         ></i>
-
         {/* Logo */}
         <Link to="/">
           <img className="w-32" src={logo} alt="Logo" />
@@ -57,7 +56,6 @@ const Header = ({ toggleSidebar }) => {
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-
         {/* Authentication Buttons */}
         <div>
           {isAuthenticated ? (

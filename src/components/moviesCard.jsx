@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MoviesModal from "./modals/moviesModal";
-import AuthModals from "./modals/authModals"; 
+import AuthModals from "./modals/authModals";
 import { supabase } from "../lib/supabase";
 
 export default function MoviesCard({ movie }) {
@@ -34,23 +34,25 @@ export default function MoviesCard({ movie }) {
     <div>
       {/* Movie Card */}
       <button
-  onClick={handleCardClick}
-  className="max-w-64 h-full overflow-hidden rounded shadow-lg transition-shadow hover:shadow-2xl flex flex-col"
->
+        onClick={handleCardClick}
+        className="flex max-h-full max-w-64 flex-col overflow-hidden rounded shadow-lg transition-shadow hover:shadow-2xl"
+      >
         <img
-          className="w-full h-96 object-cover flex-none"
+          className="max-h-80 max-w-full flex-none object-cover"
           src={movie.image || "https://via.placeholder.com/150"}
           alt={`Poster of ${movie.name || "Movie"}`}
         />
         <div className="py-2">
-          <div className="mb-2 text-start text-lg font-bold">
+          <div className="mb-2 text-start text-base font-bold sm:text-lg md:text-xl">
             {movie.name || "Loading..."}
           </div>
-          <div className="row flex items-center gap-2">
-            <div className="rounded-md border border-red-800 px-2 py-1 text-center text-sm">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="rounded-md border border-red-800 px-3 py-1 text-center text-sm sm:text-base">
               {movie.premium ? "Premium" : "HD"}
             </div>
-            <div className="py-1 text-sm">{movie.year || "Year Unknown"}</div>
+            <div className="py-1 text-sm sm:text-base">
+              {movie.year || "Year Unknown"}
+            </div>
           </div>
         </div>
       </button>
