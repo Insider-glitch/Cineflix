@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Sidebar = ({ isOpen }) => {
   return (
     <aside
-      className={`bg-neutral-900 text-white transition-transform duration-300 ease-in-out lg:sticky lg:top-16 lg:h-[calc(100vh-64px)] lg:w-64 lg:translate-x-0 ${isOpen ? "translate-y-0" : "-translate-y-full"} fixed left-0 top-16 h-auto w-full lg:block`}
+      className={`z-50 bg-neutral-900 text-white transition-transform duration-300 ease-in-out lg:sticky lg:top-16 lg:h-[calc(100vh-64px)] lg:w-64 lg:translate-x-0 ${isOpen ? "translate-y-0" : "-translate-y-full"} fixed left-0 top-16 h-auto w-full lg:block`}
     >
       <nav className="my-4">
         <ul>
