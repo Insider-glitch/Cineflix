@@ -1,42 +1,33 @@
 import React, { useState } from "react";
-import MoviesModal from "./modals/moviesModal";
-import AuthModals from "./modals/authModals"; 
+import { useNavigate } from "react-router-dom";
+import AuthModals from "./modals/authModals";
 import { supabase } from "../lib/supabase";
 
 export default function MoviesCard({ movie }) {
-  const [isMoviesModalOpen, setIsMoviesModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const navigate = useNavigate();
+
   const handleCardClick = async () => {
     if (movie.premium) {
       const { data } = await supabase.auth.getSession();
       const session = data?.session;
 
       if (session?.user) {
-        setIsMoviesModalOpen(true);
+        navigate("/frame", { state: { movie } });
       } else {
         setIsLoginModalOpen(true);
       }
     } else {
-      setIsMoviesModalOpen(true);
+      navigate("/frame", { state: { movie } });
     }
-  };
-
-  // Close MoviesModal
-  const handleMoviesModalClose = () => {
-    setIsMoviesModalOpen(false);
-  };
-
-  const handleLoginModalClose = () => {
-    setIsLoginModalOpen(false);
   };
 
   return (
     <div>
-      {/* Movie Card */}
       <button
-  onClick={handleCardClick}
-  className="max-w-64 h-full overflow-hidden rounded shadow-lg transition-shadow hover:shadow-2xl flex flex-col"
->
+        onClick={handleCardClick}
+        className="max-w-64 h-full overflow-hidden rounded shadow-lg transition-shadow hover:shadow-2xl flex flex-col"
+      >
         <img
           className="w-full h-96 object-cover flex-none"
           src={movie.image || "https://via.placeholder.com/150"}
@@ -55,13 +46,7 @@ export default function MoviesCard({ movie }) {
         </div>
       </button>
 
-      {/* Movies Modal */}
-      {isMoviesModalOpen && (
-        <MoviesModal movie={movie} onClose={handleMoviesModalClose} />
-      )}
-
-      {/* Login Modal */}
-      {isLoginModalOpen && <AuthModals closeModal={handleLoginModalClose} />}
+      {isLoginModalOpen && <AuthModals closeModal={() => setIsLoginModalOpen(false)} />}
     </div>
   );
 }
