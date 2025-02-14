@@ -28,19 +28,20 @@ const Header = ({ toggleSidebar }) => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setIsAuthenticated(false);
-    window.location.reload();
+    window.location.href = "/";
   };
 
   return (
     <>
       <header className="sticky top-0 z-50 flex items-center justify-between bg-neutral-900 p-4 pl-5 text-white">
         <i
-          className="fa-solid fa-bars cursor-pointer pr-4 text-xl"
+          className="fa-solid fa-bars cursor-pointer pr-4 text-lg sm:pr-8 sm:text-xl"
           onClick={toggleSidebar}
         ></i>
+
         {/* Logo */}
         <Link to="/">
-          <img className="w-32" src={logo} alt="Logo" />
+          <img className="w-36" src={logo} alt="Logo" />
         </Link>
 
         {/* Search Bar */}
@@ -48,11 +49,11 @@ const Header = ({ toggleSidebar }) => {
           <input
             type="text"
             placeholder="Search..."
-            className="w-11/12 rounded-l-md bg-black px-4 py-2 text-white focus:outline-none"
+            className="w-11/12 rounded-l-md bg-black px-4 py-2 text-sm text-white focus:outline-none sm:py-2 sm:text-base"
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button className="rounded-r-md bg-red-700 px-4 py-2 text-base font-semibold text-white hover:bg-red-800">
+          <button className="rounded-r-md bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800 sm:py-2 sm:text-base">
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
@@ -60,14 +61,14 @@ const Header = ({ toggleSidebar }) => {
         <div>
           {isAuthenticated ? (
             <button
-              className="rounded-md bg-red-700 px-4 py-2 text-base font-semibold text-white hover:bg-red-800"
+              className="rounded-md bg-red-700 px-3 py-2 text-sm font-semibold text-white hover:bg-red-800 sm:px-4 sm:text-base"
               onClick={handleLogout}
             >
               Logout
             </button>
           ) : (
             <button
-              className="rounded-md bg-red-700 px-4 py-2 text-base font-semibold text-white hover:bg-red-800"
+              className="rounded-md bg-red-700 px-3 py-2 text-sm font-semibold text-white hover:bg-red-800 sm:px-4 sm:text-base"
               onClick={handleModalToggle}
             >
               Login

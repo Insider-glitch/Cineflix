@@ -34,21 +34,23 @@ export default function MoviesCard({ movie }) {
           alt={`Poster of ${movie.name || "Movie"}`}
         />
         <div className="py-2">
-          <div className="mb-2 text-start text-base font-bold sm:text-lg md:text-xl">
+          <div className="mb-2 text-start text-sm font-bold sm:text-lg md:text-xl">
             {movie.name || "Loading..."}
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <div className="rounded-md border border-red-800 px-3 py-1 text-center text-sm sm:text-base">
+            <div className="rounded-md border border-red-800 px-1 py-0 text-center text-sm sm:px-3 sm:py-1 sm:text-base">
               {movie.premium ? "Premium" : "HD"}
             </div>
-            <div className="py-1 text-sm sm:text-base">
+            <div className="py-0 text-sm sm:py-1 sm:text-base">
               {movie.year || "Year Unknown"}
             </div>
           </div>
         </div>
       </button>
 
-      {isLoginModalOpen && <AuthModals closeModal={() => setIsLoginModalOpen(false)} />}
+      {isLoginModalOpen && (
+        <AuthModals closeModal={() => setIsLoginModalOpen(false)} />
+      )}
     </div>
   );
 }
