@@ -14,7 +14,7 @@ const MainContent = () => {
       try {
         const { data, error } = await supabase
           .from("movies")
-          .select("id, name, image, url, year, duration, description, premium")
+          .select("id, name, image, url, year, description, premium")
           .eq("premium", false)
           .order("id", { ascending: false });
         if (error) throw error;
