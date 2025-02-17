@@ -2,15 +2,25 @@ import React from "react";
 
 const EditMovie = ({ movie, onSave, onCancel }) => {
   const [editMovie, setEditMovie] = React.useState({ ...movie });
+  console.log("Movie Data in EditMovie:", movie);
 
   const handleSave = () => {
     if (editMovie.name.trim() && editMovie.year.trim()) {
-      onSave(editMovie);
+      const { id, ...movieWithoutId } = editMovie; // Exclude ID
+      onSave(movieWithoutId);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditMovie({ ...editMovie, image: file }); // Correctly set the file
     }
   };
 
   return (
     <tr>
+      <td className="border px-4 py-2">{editMovie.id}</td>
       <td className="border px-4 py-2">
         <input
           type="text"
@@ -29,11 +39,9 @@ const EditMovie = ({ movie, onSave, onCancel }) => {
       </td>
       <td className="border px-4 py-2">
         <input
-          type="text"
-          value={editMovie.image}
-          onChange={(e) =>
-            setEditMovie({ ...editMovie, image: e.target.value })
-          }
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange} // Handle image change on file selection
           className="border px-2 py-1 rounded w-full"
         />
       </td>
@@ -44,6 +52,14 @@ const EditMovie = ({ movie, onSave, onCancel }) => {
           onChange={(e) =>
             setEditMovie({ ...editMovie, description: e.target.value })
           }
+          className="border px-2 py-1 rounded w-full"
+        />
+      </td>
+      <td className="border px-4 py-2">
+        <input
+          type="text"
+          value={editMovie.trailer}
+          onChange={(e) => setEditMovie({ ...editMovie, trailer: e.target.value })}
           className="border px-2 py-1 rounded w-full"
         />
       </td>

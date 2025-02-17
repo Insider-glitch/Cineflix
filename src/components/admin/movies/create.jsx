@@ -7,6 +7,7 @@ const CreateMovie = ({ onAddMovie }) => {
     image: null,
     description: "",
     year: "",
+    trailer: "",
     premium: false, // Added premium field
   });
 
@@ -19,6 +20,7 @@ const CreateMovie = ({ onAddMovie }) => {
     if (
       newMovie.name.trim() &&
       newMovie.year.trim() &&
+      newMovie.trailer.trim() &&
       newMovie.image &&
       newMovie.description.trim()
     ) {
@@ -29,6 +31,7 @@ const CreateMovie = ({ onAddMovie }) => {
         image: null,
         description: "",
         year: "",
+        trailer: "",
         premium: false, // Reset premium field
       });
     }
@@ -62,6 +65,13 @@ const CreateMovie = ({ onAddMovie }) => {
           value={newMovie.year}
           onChange={(e) => setNewMovie({ ...newMovie, year: e.target.value })}
           placeholder="Year"
+          className="border px-2 py-1 rounded w-full"
+        />
+        <input
+          type="text"
+          value={newMovie.trailer}
+          onChange={(e) => setNewMovie({ ...newMovie, trailer: e.target.value })}
+          placeholder="Trailer"
           className="border px-2 py-1 rounded w-full"
         />
       </div>
